@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>比較結果一覧 [{{src}}] vs [{{target}}]</title>
+</head>
+<body>
+  <table border="1">
+    <tr>
+      <th>比較元ファイル名</th>
+      <th>比較元画像</th>
+    </tr>
+    <tr>
+      <td>{{src}}</td>
+      <td><img src="{{src_path}}"></td>
+    </tr>
+  </table>
+  <br>
+  <table border="1">
+    <tr>
+      <th>比較先ファイル名</th>
+      <th>判定結果</th>
+      <th>比較先画像</th>
+      <th>比較画像</th>
+    </tr>
+    {%  for result in results %}
+    <tr>
+      {% if result.judgement  %}
+      <td bgcolor="#82E8FF"><a href="{{result.target_img_path}}">{{result.target_name}}</a></td>
+      <td bgcolor="#82E8FF">{{result.judgement}}</td>
+      <td><img src="{{result.target_img_path}}"></td>
+      <td><img src="{{result.match_img_path}}"></td>
+      {% else %}
+      <td bgcolor="#C0C0C0"><a href="{{result.target_img_path}}">{{result.target_name}}</a></td>
+      <td bgcolor="#C0C0C0">{{result.judgement}}</td>
+      <td><img src="{{result.target_img_path}}"></td>
+      <td>-</td>
+      {% endif %}
+    </tr>
+    {%  endfor %}
+  </table>
+</body>
+</html>
